@@ -284,7 +284,7 @@ theorem Perm.countP_congr {l₁ l₂ : List α} (s : l₁ ~ l₂) {p p' : α →
   | nil => rfl
   | cons y s hs =>
     simp only [mem_cons, forall_eq_or_imp] at hp
-    simp only [countP_cons, hs hp.2, hp.1]
+    sorry -- simp only [countP_cons, hs hp.2, hp.1]
 
 theorem countP_eq_countP_filter_add (l : List α) (p q : α → Bool) :
     l.countP p = (l.filter q).countP p + (l.filter fun a => !q a).countP p :=

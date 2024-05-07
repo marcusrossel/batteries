@@ -4,6 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Robert Y. Lewis, Keeley Hoek, Mario Carneiro
 -/
 
+import Batteries.Test.Egg.SimpOnlyOverride
+
 namespace Fin
 
 /-- `min n m` as an element of `Fin (m + 1)` -/

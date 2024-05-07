@@ -20,3 +20,5 @@ lean_exe runLinter where
 
 meta if get_config? doc |>.isSome then
 require «doc-gen4» from git "https://github.com/leanprover/doc-gen4" @ "main"
+
+require egg from "../../../.."

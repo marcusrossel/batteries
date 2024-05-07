@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jeremy Avigad
 -/
 import Lean.Elab.ElabRules
+import Batteries.Test.Egg.SimpOnlyOverride
 
 open Lean Elab Meta Tactic
 
