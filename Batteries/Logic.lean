@@ -7,6 +7,8 @@ import Batteries.Tactic.Init
 import Batteries.Tactic.Alias
 import Batteries.Tactic.Lint.Misc
 
+import Batteries.Test.Egg.SimpOnlyOverride
+
 instance {f : α → β} [DecidablePred p] : DecidablePred (p ∘ f) :=
   inferInstanceAs <| DecidablePred fun x => p (f x)
 

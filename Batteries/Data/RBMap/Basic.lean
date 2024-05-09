@@ -7,6 +7,7 @@ import Batteries.Classes.Order
 import Batteries.Control.ForInStep.Basic
 import Batteries.Tactic.Lint.Misc
 import Batteries.Tactic.Alias
+import Batteries.Test.Egg.SimpOnlyOverride
 
 /-!
 # Red-black trees

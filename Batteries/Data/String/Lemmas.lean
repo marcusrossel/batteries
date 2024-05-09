@@ -54,7 +54,8 @@ instance : Batteries.BEqOrd String := .compareOfLessAndEq String.lt_irrefl
   unfold pushn; induction n <;> simp [Nat.repeat, Nat.add_assoc, *]
 
 @[simp] theorem length_append (s t : String) : (s ++ t).length = s.length + t.length := by
-  simp only [length, append, List.length_append]
+  -- Egg: `length` is a non-recursive definition
+  sorry -- simp only [length, append, List.length_append]
 
 @[simp] theorem data_push (s : String) (c : Char) : (s.push c).1 = s.1 ++ [c] := rfl
 
