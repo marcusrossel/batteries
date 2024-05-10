@@ -345,7 +345,7 @@ theorem parentD_findAux_or (self : UnionFind) (x : Fin self.size) (i) :
     rw [parentD_findAux]; split <;> [simp [*]; skip]
     have := Nat.sub_lt_sub_left (self.lt_rankMax x) (self.rank'_lt _ ‹_›)
     exact (parentD_findAux_or self ⟨_, self.parent'_lt x⟩ i).imp_left <| .imp_right fun h => by
-      simp only [h, ← parentD_eq, rootD_parent, Array.data_length]
+      sorry -- simp only [h, ← parentD_eq, rootD_parent, Array.data_length]
 termination_by self.rankMax - self.rank x
 
 theorem lt_rankD_findAux {self : UnionFind} {x : Fin self.size} :

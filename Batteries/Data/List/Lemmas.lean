@@ -2561,7 +2561,7 @@ theorem get?_range {m n : Nat} (h : m < n) : get? (range n) m = some m := by
   simp [range_eq_range', get?_range' _ _ h]
 
 theorem range_succ (n : Nat) : range (succ n) = range n ++ [n] := by
-  simp only [range_eq_range', range'_1_concat, Nat.zero_add]
+  sorry -- simp only [range_eq_range', range'_1_concat, Nat.zero_add]
 
 @[simp] theorem range_zero : range 0 = [] := rfl
 

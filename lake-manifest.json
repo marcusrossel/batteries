@@ -2,10 +2,10 @@
  "packagesDir": ".lake/packages",
  "packages":
  [{"type": "path",
-   "name": "egg",
+   "name": "«egg-tactic»",
    "manifestFile": "lake-manifest.json",
    "inherited": false,
-   "dir": "./../../../..",
+   "dir": "./../..",
    "configFile": "lakefile.lean"}],
  "name": "batteries",
  "lakeDir": ".lake"}

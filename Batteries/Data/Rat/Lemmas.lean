@@ -196,8 +196,7 @@ theorem add_def (a b : Rat) :
         (Nat.dvd_trans (Nat.gcd_dvd_right ..) <|
          Nat.dvd_trans (Nat.gcd_dvd_right ..) (Nat.dvd_mul_left ..)),
       ← normalize_mul_right _ this]; congr 1
-    · simp only [Int.add_mul, Int.mul_assoc, Int.ofNat_mul_ofNat,
-        Nat.div_mul_cancel (Nat.gcd_dvd_left ..), Nat.div_mul_cancel (Nat.gcd_dvd_right ..)]
+    · sorry -- simp only [Int.add_mul, Int.mul_assoc, Int.ofNat_mul_ofNat, Nat.div_mul_cancel (Nat.gcd_dvd_left ..), Nat.div_mul_cancel (Nat.gcd_dvd_right ..)]
     · rw [Nat.mul_right_comm, Nat.div_mul_cancel (Nat.gcd_dvd_left ..)]
 
 theorem add_def' (a b : Rat) : a + b = mkRat (a.num * b.den + b.num * a.den) (a.den * b.den) := by
@@ -246,8 +245,7 @@ theorem sub_def (a b : Rat) :
         (Nat.dvd_trans (Nat.gcd_dvd_right ..) <|
          Nat.dvd_trans (Nat.gcd_dvd_right ..) (Nat.dvd_mul_left ..)),
       ← normalize_mul_right _ this]; congr 1
-    · simp only [Int.sub_mul, Int.mul_assoc, Int.ofNat_mul_ofNat,
-        Nat.div_mul_cancel (Nat.gcd_dvd_left ..), Nat.div_mul_cancel (Nat.gcd_dvd_right ..)]
+    · sorry -- simp only [Int.sub_mul, Int.mul_assoc, Int.ofNat_mul_ofNat, Nat.div_mul_cancel (Nat.gcd_dvd_left ..), Nat.div_mul_cancel (Nat.gcd_dvd_right ..)]
     · rw [Nat.mul_right_comm, Nat.div_mul_cancel (Nat.gcd_dvd_left ..)]
 
 theorem sub_def' (a b : Rat) : a - b = mkRat (a.num * b.den - b.num * a.den) (a.den * b.den) := by
