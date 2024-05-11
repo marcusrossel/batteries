@@ -3,7 +3,7 @@ import Egg
 open Lean Meta Elab Parser Tactic
 
 private def unsupported := #[
-  "egg requires rewrites to be equalities, equivalences or recursive definitions",
+  "egg requires rewrites to be equalities, equivalences or (non-propositional) definitions",
   "egg does not support using auxiliary declarations"
 ]
 
