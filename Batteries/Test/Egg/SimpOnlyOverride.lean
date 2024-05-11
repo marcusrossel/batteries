@@ -2,6 +2,11 @@ import Lean
 import Egg
 open Lean Meta Elab Parser Tactic
 
+private def unsupported := #[
+  "egg requires rewrites to be equalities, equivalences or recursive definitions",
+  "egg does not support using auxiliary declarations"
+]
+
 elab_rules : tactic
   | `(simp| simp only $[[$lemmas:simpLemma,*]]?) => do
     let simpStx ← if let some lems := lemmas then `(tactic| simp only [$lems,*]) else `(tactic| simp only)
@@ -23,5 +28,6 @@ elab_rules : tactic
         logWarning "egg succeeded"
       catch err =>
         s.restore
-        logWarning m!"egg failed: {err.toMessageData}"
+        if !unsupported.contains (← err.toMessageData.toString) then
+          logWarning m!"egg failed: {err.toMessageData}"
         evalSimp simpStx

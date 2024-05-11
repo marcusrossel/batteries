@@ -327,8 +327,7 @@ theorem zip_map' (f : α → β) (g : α → γ) :
     ∀ l : List α, zip (l.map f) (l.map g) = l.map fun a => (f a, g a)
   | [] => rfl
   | a :: l => by
-    -- Egg: egg does not support using auxiliary declarations
-    sorry -- simp only [map, zip_cons_cons, zip_map']
+    simp only [map, zip_cons_cons, zip_map']
 
 theorem of_mem_zip {a b} : ∀ {l₁ : List α} {l₂ : List β}, (a, b) ∈ zip l₁ l₂ → a ∈ l₁ ∧ b ∈ l₂
   | _ :: l₁, _ :: l₂, h => by
@@ -945,12 +944,10 @@ theorem nth_take_of_succ {l : List α} {n : Nat} : (l.take (n + 1)).get? n = l.g
 theorem take_succ {l : List α} {n : Nat} : l.take (n + 1) = l.take n ++ (l.get? n).toList := by
   induction l generalizing n with
   | nil =>
-    -- Egg: Option.toList is a non-recursive definition
-    sorry -- simp only [Option.toList, get?, take_nil, append_nil]
+    simp only [Option.toList, get?, take_nil, append_nil]
   | cons hd tl hl =>
     cases n
-    · -- Egg: Option.toList is a non-recursive definition
-      sorry -- simp only [Option.toList, get?, eq_self_iff_true, take, nil_append]
+    · simp only [Option.toList, get?, eq_self_iff_true, take, nil_append]
     · simp only [hl, cons_append, get?, eq_self_iff_true, take]
 
 @[simp]
@@ -993,8 +990,7 @@ theorem dropLast_eq_take (l : List α) : l.dropLast = l.take l.length.pred := by
 
 theorem dropLast_take {n : Nat} {l : List α} (h : n < l.length) :
     (l.take n).dropLast = l.take n.pred := by
-  -- Egg: conditional rewriting
-  sorry -- simp only [dropLast_eq_take, length_take, Nat.le_of_lt h, take_take, pred_le, Nat.min_eq_left]
+  simp only [dropLast_eq_take, length_take, Nat.le_of_lt h, take_take, pred_le, Nat.min_eq_left]
 
 theorem map_eq_append_split {f : α → β} {l : List α} {s₁ s₂ : List β}
     (h : map f l = s₁ ++ s₂) : ∃ l₁ l₂, l = l₁ ++ l₂ ∧ map f l₁ = s₁ ∧ map f l₂ = s₂ := by
@@ -1658,13 +1654,11 @@ theorem filter_congr' {p q : α → Bool} :
 
 theorem filterMap_cons_none {f : α → Option β} (a : α) (l : List α) (h : f a = none) :
     filterMap f (a :: l) = filterMap f l := by
-      -- Egg: non-recursive sub-definition in `filterMap`
-      sorry -- simp only [filterMap, h]
+      simp only [filterMap, h]
 
 theorem filterMap_cons_some (f : α → Option β) (a : α) (l : List α) {b : β} (h : f a = some b) :
     filterMap f (a :: l) = b :: filterMap f l := by
-      -- Egg: non-recursive sub-definition in `filterMap`
-      sorry -- simp only [filterMap, h]
+      simp only [filterMap, h]
 
 theorem filterMap_append {α β : Type _} (l l' : List α) (f : α → Option β) :
     filterMap f (l ++ l') = filterMap f l ++ filterMap f l' := by
