@@ -402,8 +402,7 @@ theorem forall_mem_singleton {p : α → Prop} {a : α} : (∀ x ∈ [a], p x) �
 
 theorem forall_mem_append {p q : α → Prop} {l₁ l₂ : List α} :
     (∀ x ∈ l₁ ++ l₂, p x) ↔ (∀ x ∈ l₁, p x) ∧ (∀ x ∈ l₂, p x) := by
-  -- Egg: Cf. Tests/Application Order.lean
-  sorry -- simp only [mem_append, forall_and, or_imp]
+  simp only [mem_append, forall_and, or_imp]
 
 /-! ### List subset -/
 
@@ -723,8 +722,8 @@ theorem dropLast_cons_of_ne_nil {α : Type u} {x : α}
     simp [h]
 
 theorem dropLast_append_cons : dropLast (l₁ ++ b::l₂) = l₁ ++ dropLast (b::l₂) := by
-  -- Egg: conditional rewriting
-  sorry -- simp only [ne_eq, not_false_eq_true, dropLast_append_of_ne_nil]
+  egg [ne_eq, not_false_eq_true, dropLast_append_of_ne_nil; (by simp : (b::l₂) ≠ [])]
+  egg_succeeded
 
 @[simp 1100] theorem dropLast_concat : dropLast (l₁ ++ [b]) = l₁ := by simp
 
@@ -1205,13 +1204,12 @@ theorem exists_of_modifyNthTail (f : List α → List α) {n} {l : List α} (h :
 
 @[simp] theorem get?_modifyNth_eq (f : α → α) (n) (l : List α) :
   (modifyNth f n l).get? n = f <$> l.get? n := by
-  -- Egg: conditional rewriting
-  sorry -- simp only [get?_modifyNth, if_pos]
+  -- fails do to β-reduction: egg [get?_modifyNth, if_pos; (rfl : n = n)]
+  simp only [get?_modifyNth, if_pos]
 
 @[simp] theorem get?_modifyNth_ne (f : α → α) {m n} (l : List α) (h : m ≠ n) :
     (modifyNth f m l).get? n = l.get? n := by
-  -- Egg: conditional rewriting
-  sorry -- simp only [get?_modifyNth, if_neg h, id_map']
+  simp only [get?_modifyNth, if_neg h, id_map']
 
 theorem exists_of_modifyNth (f : α → α) {n} {l : List α} (h : n < l.length) :
     ∃ l₁ a l₂, l = l₁ ++ a :: l₂ ∧ l₁.length = n ∧ modifyNth f n l = l₁ ++ f a :: l₂ :=

@@ -7,6 +7,8 @@ private def unsupported := #[
   "egg does not support using auxiliary declarations"
 ]
 
+elab "egg_succeeded" : tactic => logWarning "egg succeeded"
+
 elab_rules : tactic
   | `(simp| simp only $[[$lemmas:simpLemma,*]]?) => do
     let simpStx ← if let some lems := lemmas then `(tactic| simp only [$lems,*]) else `(tactic| simp only)
