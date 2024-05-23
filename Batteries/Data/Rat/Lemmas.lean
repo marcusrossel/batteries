@@ -38,7 +38,6 @@ theorem normalize_eq {num den} (den_nz) : normalize num den den_nz =
       den := den / num.natAbs.gcd den
       den_nz := normalize.den_nz den_nz rfl
       reduced := normalize.reduced' den_nz rfl } := by
-  set_option egg.eraseProofs false in
   simp only [normalize, maybeNormalize_eq, Int.div_eq_ediv_of_dvd (Int.ofNat_dvd_left.2 (Nat.gcd_dvd_left ..))]
 
 @[simp] theorem normalize_zero (nz) : normalize 0 d nz = 0 := by
