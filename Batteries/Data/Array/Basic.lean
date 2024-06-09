@@ -153,6 +153,50 @@ Unsafe implementation of `attachWith`, taking advantage of the fact that the rep
 -/
 @[inline] def join (l : Array (Array α)) : Array α := l.foldl (· ++ ·) #[]
 
+/-!
+### Safe Nat Indexed Array functions
+The functions in this section offer variants of Array functions which use `Nat` indices
+instead of `Fin` indices. All these functions have as parameter a proof that the index is
+valid for the array. But this parameter has a default argument `by get_elem_tactic` which
+should prove the index bound.
+-/
+
+/--
+`setN a i h x` sets an element in a vector using a Nat index which is provably valid.
+A proof by `get_elem_tactic` is provided as a default argument for `h`.
+This will perform the update destructively provided that `a` has a reference count of 1 when called.
+-/
+def setN (a : Array α) (i : Nat) (h : i < a.size := by get_elem_tactic) (x : α) : Array α :=
+  a.set ⟨i, h⟩ x
+
+/--
+`swapN a i j hi hj` swaps two `Nat` indexed entries in an `Array α`.
+Uses `get_elem_tactic` to supply a proof that the indices are in range.
+`hi` and `hj` are both given a default argument `by get_elem_tactic`.
+This will perform the update destructively provided that `a` has a reference count of 1 when called.
+-/
+def swapN (a : Array α) (i j : Nat)
+    (hi : i < a.size := by get_elem_tactic) (hj : j < a.size := by get_elem_tactic) : Array α :=
+  Array.swap a ⟨i,hi⟩ ⟨j, hj⟩
+
+/--
+`swapAtN a i h x` swaps the entry with index `i : Nat` in the vector for a new entry `x`.
+The old entry is returned alongwith the modified vector.
+Automatically generates proof of `i < a.size` with `get_elem_tactic` where feasible.
+-/
+def swapAtN (a : Array α) (i : Nat) (h : i < a.size := by get_elem_tactic) (x : α) : α × Array α :=
+  swapAt a ⟨i,h⟩ x
+
+/--
+`eraseIdxN a i h` Removes the element at position `i` from a vector of length `n`.
+`h : i < a.size` has a default argument `by get_elem_tactic` which tries to supply a proof
+that the index is valid.
+This function takes worst case O(n) time because it has to backshift all elements at positions
+greater than i.
+-/
+def eraseIdxN (a : Array α) (i : Nat) (h : i < a.size := by get_elem_tactic) : Array α :=
+  a.feraseIdx ⟨i, h⟩
+
 end Array
 
 
@@ -195,7 +239,7 @@ subarray, or `none` if the subarray is empty.
 def popHead? (as : Subarray α) : Option (α × Subarray α) :=
   if h : as.start < as.stop
     then
-      let head := as.as.get ⟨as.start, Nat.lt_of_lt_of_le h as.h₂⟩
+      let head := as.array.get ⟨as.start, Nat.lt_of_lt_of_le h as.stop_le_array_size⟩
       let tail :=
         { as with
           start := as.start + 1
