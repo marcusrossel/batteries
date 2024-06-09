@@ -125,7 +125,7 @@ theorem get_set (a : Array α) (i : Fin a.size) (j : Nat) (hj : j < a.size) (v :
 
 @[simp] theorem get_set_ne (a : Array α) (i : Fin a.size) {j : Nat} (v : α) (hj : j < a.size)
     (h : i.1 ≠ j) : (a.set i v)[j]'(by simp [*]) = a[j] := by
-  sorry -- simp only [set, getElem_eq_data_get, List.get_set_ne _ h]
+  simp only [set, getElem_eq_data_get, List.get_set_ne _ h]
 
 theorem getElem_setD (a : Array α) (i : Nat) (v : α) (h : i < (setD a i v).size) :
   (setD a i v)[i] = v := by
@@ -817,11 +817,13 @@ instance [DecidableEq α] (a : α) (as : Array α) : Decidable (a ∈ as) :=
 /-! ### swap -/
 
 @[simp] theorem get_swap_right (a : Array α) {i j : Fin a.size} : (a.swap i j)[j.val] = a[i] :=
-  by simp only [swap, fin_cast_val, get_eq_getElem, getElem_set_eq, getElem_fin]
+  -- Hangs:
+  sorry -- by simp only [swap, fin_cast_val, get_eq_getElem, getElem_set_eq, getElem_fin]
 
 @[simp] theorem get_swap_left (a : Array α) {i j : Fin a.size} : (a.swap i j)[i.val] = a[j] :=
   if he : ((Array.size_set _ _ _).symm ▸ j).val = i.val then by
-    simp only [←he, fin_cast_val, get_swap_right, getElem_fin]
+    -- Hangs: I think this is related to the new proof erasure.
+    sorry -- simp only [←he, fin_cast_val, get_swap_right, getElem_fin]
   else by
     apply Eq.trans
     · apply Array.get_set_ne

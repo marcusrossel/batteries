@@ -7,6 +7,7 @@ private def unsupported := #[
   "egg does not support using auxiliary declarations"
 ]
 
+set_option linter.missingDocs false in
 elab "egg_succeeded" : tactic => logWarning "egg succeeded"
 
 elab_rules : tactic
@@ -27,6 +28,7 @@ elab_rules : tactic
       s.restore
       try
         evalTactic (← `(tactic|egg [$premises,*]))
+        done
         logWarning "egg succeeded"
       catch err =>
         s.restore

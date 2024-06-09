@@ -126,8 +126,7 @@ theorem parent'_lt (self : UnionFind) (i : Fin self.size) :
   simp only [← parentD_eq, parentD_lt, Fin.is_lt, Array.data_length]
 
 theorem parent_lt (self : UnionFind) (i : Nat) : self.parent i < self.size ↔ i < self.size := by
-  -- Egg: conditional rewriting
-  simp only [parentD]; split <;> sorry -- simp only [*, parent'_lt]
+  simp only [parentD]; split <;> simp only [*, parent'_lt]
 
 /-- Rank of union-find node -/
 abbrev rank (self : UnionFind) (i : Nat) : Nat := rankD self.arr i
