@@ -3,8 +3,10 @@ import Egg
 open Lean Meta Elab Parser Tactic
 
 private def unsupported := #[
+  "egg requires arguments to be theorems, definitions or axioms",
   "egg requires rewrites to be equalities, equivalences or (non-propositional) definitions",
-  "egg does not support using auxiliary declarations"
+  "egg does not support using auxiliary declarations",
+  "egg does not currently support rewrites with unbound conditions (expression)"
 ]
 
 set_option linter.missingDocs false in
