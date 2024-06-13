@@ -31,8 +31,6 @@ elab_rules : tactic
       s.restore
       try
         evalTactic (← `(tactic|egg [$premises,*]))
-        done
-        logWarning "egg succeeded"
       catch err =>
         s.restore
         if !unsupported.contains (← err.toMessageData.toString) then

@@ -325,7 +325,6 @@ theorem exists_of_modifyNthTail (f : List α → List α) {n} {l : List α} (h :
 
 @[simp] theorem get?_modifyNth_eq (f : α → α) (n) (l : List α) :
   (modifyNth f n l).get? n = f <$> l.get? n := by
-  -- fails do to β-reduction: egg [get?_modifyNth, if_pos; (rfl : n = n)]
   simp only [get?_modifyNth, if_pos]
 
 @[simp] theorem get?_modifyNth_ne (f : α → α) {m n} (l : List α) (h : m ≠ n) :
