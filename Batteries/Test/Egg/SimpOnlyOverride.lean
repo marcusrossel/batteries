@@ -7,7 +7,8 @@ private def unsupported := #[
   "egg requires rewrites to be equalities, equivalences or (non-propositional) definitions",
   "egg does not support using auxiliary declarations",
   "egg does not currently support rewrites with unbound conditions (expression)",
-  "egg does not currently support rewrites with unbound conditions (level)"
+  "egg does not currently support rewrites with unbound conditions (level)",
+  "typeclass instance problem is stuck, it is often due to metavariables"
 ]
 
 set_option linter.missingDocs false in
