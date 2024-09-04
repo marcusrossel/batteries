@@ -21,3 +21,5 @@ lean_exe runLinter where
 @[test_driver]
 lean_exe test where
   srcDir := "scripts"
+
+require egg from "../../../.."
