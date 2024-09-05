@@ -3,6 +3,7 @@ Copyright (c) 2014 Parikshit Khanna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Parikshit Khanna, Jeremy Avigad, Leonardo de Moura, Floris van Doorn, Mario Carneiro
 -/
+import Batteries.Test.Egg.SimpOnlyOverride
 import Batteries.Control.ForInStep.Lemmas
 import Batteries.Data.List.Basic
 import Batteries.Tactic.Init
@@ -345,7 +346,7 @@ theorem inter_def [BEq α] (l₁ l₂ : List α)  : l₁ ∩ l₂ = filter (elem
 @[simp]
 theorem pair_mem_product {xs : List α} {ys : List β} {x : α} {y : β} :
     (x, y) ∈ product xs ys ↔ x ∈ xs ∧ y ∈ ys := by
-  sorry -- simp only [product, and_imp, mem_map, Prod.mk.injEq, exists_eq_right_right, mem_bind, iff_self]
+  simp only [product, and_imp, mem_map, Prod.mk.injEq, exists_eq_right_right, mem_bind, iff_self]
 
 /-! ### monadic operations -/
 

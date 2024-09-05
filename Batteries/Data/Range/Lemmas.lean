@@ -3,6 +3,7 @@ Copyright (c) 2022 Mario Carneiro. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Mario Carneiro
 -/
+import Batteries.Test.Egg.SimpOnlyOverride
 import Batteries.Tactic.SeqFocus
 import Batteries.Data.List.Lemmas
 

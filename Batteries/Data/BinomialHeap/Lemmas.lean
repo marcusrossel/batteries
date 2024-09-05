@@ -3,6 +3,7 @@ Copyright (c) 2023 Mario Carneiro. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Mario Carneiro
 -/
+import Batteries.Test.Egg.SimpOnlyOverride
 import Batteries.Data.BinomialHeap.Basic
 
 namespace Batteries.BinomialHeap
@@ -16,7 +17,7 @@ theorem Heap.findMin_val : ((s : Heap α).findMin le k res).val = s.headD le res
 theorem Heap.deleteMin_fst : ((s : Heap α).deleteMin le).map (·.1) = s.head? le :=
   match s with
   | .nil => rfl
-  | .cons r a c s => by sorry -- simp only [deleteMin, findMin_val, Option.map, head?]
+  | .cons r a c s => by simp only [deleteMin, findMin_val, Option.map, head?]
 
 @[simp] theorem HeapNode.WF.realSize_eq :
     ∀ {n} {s : HeapNode α}, s.WF le a n → s.realSize + 1 = 2 ^ n

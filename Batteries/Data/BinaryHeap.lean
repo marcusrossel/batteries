@@ -4,6 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Mario Carneiro
 -/
 
+import Batteries.Test.Egg.SimpOnlyOverride
+
 namespace Batteries
 
 /-- A max-heap data structure. -/

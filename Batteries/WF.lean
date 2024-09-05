@@ -4,6 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Miyahara Kō
 -/
 
+import Batteries.Test.Egg.SimpOnlyOverride
+
 /-!
 # Computable Acc.rec and WellFounded.fix
 

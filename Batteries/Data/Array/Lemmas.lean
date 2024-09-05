@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 
 Authors: Mario Carneiro, Gabriel Ebner
 -/
+import Batteries.Test.Egg.SimpOnlyOverride
 import Batteries.Data.List.Lemmas
 import Batteries.Data.Array.Basic
 import Batteries.Tactic.SeqFocus
@@ -69,7 +70,7 @@ theorem data_zipWith (f : α → β → γ) (as : Array α) (bs : Array β) :
       show List.zipWith f (as.data[i_as] :: List.drop (i_as + 1) as.data)
         ((List.get bs.data i_bs) :: List.drop (i_bs + 1) bs.data) =
         List.zipWith f (List.drop i as.data) (List.drop i bs.data)
-      sorry -- simp only [data_length, Fin.getElem_fin, List.getElem_cons_drop, List.get_eq_getElem]
+      simp only [data_length, Fin.getElem_fin, List.getElem_cons_drop, List.get_eq_getElem]
   simp [zipWith, loop 0 #[] (by simp) (by simp)]
 @[deprecated (since := "2024-08-13")] alias zipWith_eq_zipWith_data := data_zipWith
 

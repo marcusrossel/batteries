@@ -3,6 +3,7 @@ Copyright (c) 2023 François G. Dorais. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: François G. Dorais, Mario Carneiro
 -/
+import Batteries.Test.Egg.SimpOnlyOverride
 import Batteries.Classes.Order
 
 /-! ### UInt8 -/

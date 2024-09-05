@@ -8,6 +8,7 @@ import Batteries.Test.Internal.DummyLabelAttr
 import Lean.Meta.Tactic.Constructor
 import Lean.Elab.SyntheticMVars
 import Lean.Elab.Tactic.SolveByElim -- FIXME we need to make SolveByElimConfig builtin
+import Batteries.Test.Egg.SimpOnlyOverride
 
 set_option autoImplicit true
 
